@@ -3,6 +3,7 @@ import HeroSection from "@/src/components/fashion/HeroSection";
 import FloatingSearchBar from "@/src/components/fashion/FloatingSearchBar";
 import ProductGrid from "@/src/components/fashion/ProductGrid";
 import Collections from "@/src/components/fashion/Collections";
+import InfluencerScroll from "@/src/components/fashion/InfluencerScroll";
 
 export default function FashionPage() {
   return (
@@ -12,6 +13,7 @@ export default function FashionPage() {
       <FloatingSearchBar />
       <ProductGrid />
       <Collections />
+      <InfluencerScroll />
       
     </main>
   );
