@@ -1,6 +1,7 @@
 import Navbar from "@/src/components/fashion/Navbar";
 import HeroSection from "@/src/components/fashion/HeroSection";
 import FloatingSearchBar from "@/src/components/fashion/FloatingSearchBar";
+import ProductGrid from "@/src/components/fashion/ProductGrid";
 
 export default function FashionPage() {
   return (
@@ -10,7 +11,7 @@ export default function FashionPage() {
       <FloatingSearchBar />
       
       <div className="min-h-screen pt-16 pb-24">
-        {/* เตรียมไว้ใส่ Product Grid ในสเต็ปถัดไป */}
+        <ProductGrid />
       </div>
     </main>
   );
