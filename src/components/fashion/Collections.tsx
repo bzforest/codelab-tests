@@ -48,6 +48,7 @@ function CollectionCard({ item, index }: { item: CollectionItem, index: number }
                 src={item.images[currentImageIndex]} 
                 alt={item.title}
                 fill
+                sizes="(max-width: 768px) 400px, 800px"
                 className="object-cover"
               />
             </motion.div>
@@ -67,7 +68,7 @@ function CollectionCard({ item, index }: { item: CollectionItem, index: number }
 
   export default function Collections() {
     return (
-      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+      <section id="collections" className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
         <h2 className="font-cinzel text-center text-3xl md:text-4xl font-bold text-slate-900 pb-10">
           OUR COLLECTIONS
         </h2>

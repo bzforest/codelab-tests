@@ -6,7 +6,7 @@ import { influencers } from "@/src/data/influencers";
 
 export default function InfluencerScroll() {
   return (
-    <section className="py-16 pt-24 overflow-hidden">
+    <section id="luminaMuse" className="py-16 pt-24 overflow-hidden">
       <div className="text-center mb-10">
         <h2 className="font-cinzel text-3xl font-bold text-slate-900 mb-2">#LuminaMuse</h2>
         <p className="text-slate-500">Seen on icons, styled by you.</p>
@@ -29,6 +29,7 @@ export default function InfluencerScroll() {
                   src={item.image} 
                   alt={item.name}
                   fill
+                  sizes="(max-width: 768px) 280px, 350px"
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>

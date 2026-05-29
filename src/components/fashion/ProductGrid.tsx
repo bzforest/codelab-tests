@@ -27,10 +27,20 @@ const cardVariants: Variants = {
 
 export default function ProductGrid() {
   const [likedItems, setLikedItems] = useState<Record<number, boolean>>({});
+  // 🟢 เพิ่ม State สำหรับเก็บสถานะการพลิกการ์ดบนมือถือ
+  const [flippedItems, setFlippedItems] = useState<Record<number, boolean>>({});
 
   const toggleLike = (e: React.MouseEvent, id: number) => {
-    e.stopPropagation();
+    e.stopPropagation(); // 🟢 ของเดิมคุณเบสเขียนไว้ดีมากครับ ป้องกันการพลิกซ้อน
     setLikedItems((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  // 🟢 ฟังก์ชันสำหรับสลับหน้าการ์ดตอนกด (ทัชสกรีน)
+  const toggleFlip = (id: number) => {
+    setFlippedItems((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
@@ -67,20 +77,25 @@ export default function ProductGrid() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+        // 🟢 เปลี่ยนจาก grid ธรรมดา เป็น flex แนวนอนในมือถือ (snap) และกลับเป็น grid ในจอ md ขึ้นไป
+        className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
       >
         {mockProducts.map((product) => {
           const isLiked = likedItems[product.id];
+          const isFlipped = flippedItems[product.id]; // เช็กว่าใบนี้โดนทัชให้พลิกไหม
 
           return (
             <motion.div 
               key={product.id} 
               variants={cardVariants}
-              className="group cursor-pointer perspective-1000"
+              // 🟢 เพิ่ม onClick สำหรับทัช และคลาส shrink-0 w-[80vw] ให้มันโผล่ขอบบนมือถือ
+              onClick={() => toggleFlip(product.id)}
+              className="group cursor-pointer perspective-1000 shrink-0 w-[80vw] sm:w-[300px] md:w-auto snap-center"
             >
               {/* === 3D Flip Container === */}
               <div className="relative aspect-4/5 mb-6">
-                <div className="w-full h-full relative transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                {/* 🟢 อัปเดตเงื่อนไข: Hover พลิกบน Desktop (md:group-hover) และคลิกพลิกบน Mobile (isFlipped) */}
+                <div className={`w-full h-full relative transition-transform duration-700 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}>
                   
                   {/* Front Face */}
                   <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl overflow-hidden bg-slate-100 shadow-sm">
@@ -134,7 +149,14 @@ export default function ProductGrid() {
                       Premium materials crafted for modern lifestyle. Experience timeless aesthetics.
                     </p>
 
-                    <button className="w-full py-3 bg-slate-900 text-white font-medium rounded-xl shadow-md hover:bg-rosegold-dark transition-colors flex items-center justify-center gap-2 hover-sweep">
+                    {/* 🟢 เพิ่ม e.stopPropagation() ที่ปุ่มตะกร้า เพื่อไม่ให้กดซื้อแล้วการ์ดพลิกกลับ */}
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // ใส่ Logic Add to cart ตรงนี้ได้เลยครับ
+                      }}
+                      className="w-full py-3 bg-slate-900 text-white font-medium rounded-xl shadow-md hover:bg-rosegold-dark transition-colors flex items-center justify-center gap-2 hover-sweep cursor-pointer"
+                    >
                       <ShoppingBag className="w-4 h-4" />
                       ADD TO CART
                     </button>

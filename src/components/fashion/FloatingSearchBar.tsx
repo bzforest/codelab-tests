@@ -27,10 +27,10 @@ export default function FloatingSearchBar() {
           <SlidersHorizontal className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-rosegold transition-colors z-10 pointer-events-none" />
 
           <Select defaultValue="all">
-            <SelectTrigger className="w-full h-[50px]! pl-12 pr-4 bg-white/50 border-slate-200 rounded-xl focus:ring-2 focus:ring-rosegold focus:ring-offset-0 text-slate-700 font-medium transition-all shadow-none">
+            <SelectTrigger className="w-full h-[50px]! pl-12 pr-4 bg-white/50 border-slate-200 rounded-xl focus:ring-2 focus:ring-rosegold focus:ring-offset-0 text-slate-700 font-medium transition-all shadow-none cursor-pointer">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
-            <SelectContent className="bg-white/95 backdrop-blur-xl border-rose-100 rounded-xl shadow-lg z-50">
+            <SelectContent position="popper" sideOffset={8} className="bg-white/95 backdrop-blur-xl border-rose-100 rounded-xl shadow-lg z-50">
               <SelectItem value="all" className="text-slate-600 font-medium cursor-pointer transition-colors">
                 All Categories
               </SelectItem>
@@ -48,7 +48,7 @@ export default function FloatingSearchBar() {
         </div>
         
         {/* ปุ่มค้นหา */}
-        <button className="hover-sweep bg-slate-900 text-white px-8 h-[50px] rounded-xl font-medium hover:bg-rosegold-dark transition-colors w-full md:w-auto shrink-0 shadow-md hover:shadow-lg">
+        <button className="hover-sweep bg-slate-900 text-white px-8 h-[50px] rounded-xl font-medium hover:bg-rosegold-dark transition-colors w-full md:w-auto shrink-0 shadow-md hover:shadow-lg cursor-pointer">
           SEARCH
         </button>
 

@@ -13,8 +13,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Codelabs Frontend Test",
-  description: "Developed by Best",
+  title: "LUMINA | Elevate Your Elegance",
+  description: "Discover curated fashion pieces designed to seamlessly complement your daily routine.",
 };
 
 export default function RootLayout({

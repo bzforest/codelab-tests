@@ -2,6 +2,21 @@
 @config "../../tailwind.config.ts";
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  [id] {
+    scroll-margin-top: 5rem; /* offset for sticky Navbar (h-20) */
+  }
+}
+
+::selection {
+  background-color: #dfbbc7; /* สี Rosegold อ่อนๆ */
+  color: #1a2536; /* สีตัวอักษร slate-900 */
+}
+
+@layer base {
   /* Home */
   :root {
     --background: 222.2 84% 4.9%;
