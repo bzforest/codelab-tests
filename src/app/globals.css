@@ -112,3 +112,14 @@
     left: 200%;
   }
 }
+
+.custom-select-item[data-highlighted] {
+  background-color: var(--rosegold-dark) !important;
+  color: var(--slate-100) !important;
+}
+
+.custom-select-item:focus,
+.custom-select-item:hover {
+  background-color: var(--rosegold-dark) !important;
+  color: var(--slate-100) !important;
+}
